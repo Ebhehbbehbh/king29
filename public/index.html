@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام حماية نيزك الإلكتروني</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        body { 
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh; 
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #4FC3F7;
+        }
+        .subtitle {
+            color: #B3E5FC;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .password-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .unlock-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .unlock-btn:hover {
+            background: linear-gradient(45deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .security-info {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #E1F5FE;
+        }
+        .footer {
+            margin-top: 30px;
+            color: #B3E5FC;
+            font-size: 0.9em;
+        }
+        .attempts-counter {
+            color: #FFCDD2;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        .success-screen {
+            background: linear-gradient(135deg, #00c853, #64dd17);
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- الشاشة الرئيسية -->
+    <div id="mainScreen">
+        <div class="container">
+            <div class="logo">🌙 نيزك</div>
+            <div class="subtitle">مؤسسة نيزك الإلكترونية</div>
+            
+            <div class="password-box">
+                <h3>🔒 نظام الحماية النهائي</h3>
+                <p style="margin: 15px 0; color: #E1F5FE;">للدخول إلى النظام، يرجى إدخال كلمة المرور</p>
+                
+                <input type="password" 
+                       id="passwordInput" 
+                       class="password-input" 
+                       placeholder="أدخل كلمة المرور هنا">
+                
+                <button onclick="attemptUnlock()" class="unlock-btn">
+                    🔓 فتح النظام
+                </button>
+                
+                <div class="attempts-counter">
+                    محاولات الدخول: <span id="attemptsCount">0</span>
+                </div>
+            </div>
+            
+            <div class="security-info">
+                <p>⚡ نظام حماية متقدم</p>
+                <p>🛡️ تأمين كامل ضد الاختراق</p>
+                <p>🔐 تشفير عالي الجودة</p>
+            </div>
+            
+            <div class="footer">
+                <p>مطور النظام: قتيبة</p>
+                <p>مؤسسة نيزك الإلكترونية © 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة النجاح -->
+    <div id="successScreen" class="success-screen hidden">
+        <div style="font-size: 4em; margin-bottom: 20px;">✅</div>
+        <h1 style="font-size: 2.5em; margin-bottom: 15px;">تم فتح النظام بنجاح</h1>
+        <p style="font-size: 1.2em; margin-bottom: 30px;">مرحباً بك في نظام مؤسسة نيزك الإلكترونية</p>
+        <button onclick="restartSystem()" 
+                style="padding: 15px 30px; background: white; color: #00c853; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer;">
+            إعادة تشغيل النظام
+        </button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="security.js"></script>
+</body>
+</html>
