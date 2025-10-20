@@ -1,0 +1,16 @@
+{
+  "name": "nizek-security-system",
+  "version": "1.0.0",
+  "description": "نظام حماية مؤسسة نيزك الإلكترونية",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "socket.io": "^4.7.0"
+  },
+  "keywords": ["security", "nizek", "protection"],
+  "author": "مؤسسة نيزك الإلكترونية - المطور قتيبة",
+  "license": "MIT"
+}
